@@ -1,6 +1,6 @@
 ## Hello!
 
-My name's Richard and I have a background of working 20+ years in tech, mainly communication and digital marketing. I have also worked as a writer for print and digital media. I have worked in product managment and requirement engineering as well, but never coded myself.
+My name's Richard and I have a background of working 20+ years in tech, mainly communication and digital marketing. I have also worked as a writer for print and digital media. I have had some experience in product managment and requirement engineering as well, but never coded myself.
 
 That changed with the next level generative AI. I am now using local Qwen Coder Models and Claude Code for tehc projects that I have always thought I#d love to go for, but never had the money to fund.
 
