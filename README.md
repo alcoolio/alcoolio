@@ -10,9 +10,9 @@ NeighbourGood - a hyper local social network for sharing goods between neighbour
 
 Open Global Income - an API and simuulation tool for implementing a basic income.
 
-DeepFake Guardian - a chatbot that detects violence, sexual violence, bullying. with deepfake detection powered by provacy friendly local LLM.
+DeepFake Guardian - a chatbot that detects violence, sexual violence, bullying. with deepfake detection powered by privacy friendly local LLM.
 
-All those projects are word in progress. Contributors are welcome.
+All those projects are work in progress. Contributors are welcome.
 
 <!--
 **alcoolio/alcoolio** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
