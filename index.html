@@ -9,8 +9,8 @@
 
     body {
       min-height: 100vh;
-      background: #f5f2ec;
-      color: #1a1a1a;
+      background: #07070f;
+      color: #c8c8cc;
       font-family: 'Georgia', serif;
       font-size: 1.05rem;
       line-height: 1.8;
@@ -18,25 +18,68 @@
       overflow-x: hidden;
     }
 
-    /* ── Animated background orbs ── */
+    /* ── Animated background — deep drifting color fields ── */
     .orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.12;
-      animation: drift linear infinite;
+      filter: blur(130px);
+      opacity: 0.28;
       z-index: 0;
       pointer-events: none;
+      will-change: transform;
     }
-    .orb:nth-child(1) { width: 500px; height: 500px; background: #a8c4d4; top: -80px; left: -120px; animation-duration: 30s; }
-    .orb:nth-child(2) { width: 350px; height: 350px; background: #c4a882; bottom: 5%; right: -80px; animation-duration: 24s; animation-delay: -9s; }
-    .orb:nth-child(3) { width: 280px; height: 280px; background: #9ab8a0; top: 45%; left: 35%; animation-duration: 38s; animation-delay: -18s; }
 
-    @keyframes drift {
+    .orb:nth-child(1) {
+      width: 750px; height: 750px;
+      background: #4c1d95;
+      top: -200px; left: -180px;
+      animation: drift1 42s ease-in-out infinite;
+    }
+    .orb:nth-child(2) {
+      width: 650px; height: 650px;
+      background: #0c1f6e;
+      bottom: -150px; right: -150px;
+      animation: drift2 36s ease-in-out infinite;
+      animation-delay: -12s;
+    }
+    .orb:nth-child(3) {
+      width: 550px; height: 550px;
+      background: #0f4457;
+      top: 40%; left: 30%;
+      animation: drift3 50s ease-in-out infinite;
+      animation-delay: -25s;
+    }
+    .orb:nth-child(4) {
+      width: 420px; height: 420px;
+      background: #2d1b69;
+      top: 15%; right: 5%;
+      animation: drift4 30s ease-in-out infinite;
+      animation-delay: -8s;
+    }
+
+    @keyframes drift1 {
       0%   { transform: translate(0, 0) scale(1); }
-      25%  { transform: translate(35px, -25px) scale(1.04); }
-      50%  { transform: translate(15px, 45px) scale(0.97); }
-      75%  { transform: translate(-25px, 18px) scale(1.02); }
+      33%  { transform: translate(60px, 80px) scale(1.06); }
+      66%  { transform: translate(-40px, 50px) scale(0.95); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes drift2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(-70px, -50px) scale(1.04); }
+      66%  { transform: translate(30px, -80px) scale(0.97); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes drift3 {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(50px, -60px) scale(1.05); }
+      50%  { transform: translate(-30px, 40px) scale(0.96); }
+      75%  { transform: translate(60px, 30px) scale(1.03); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes drift4 {
+      0%   { transform: translate(0, 0) scale(1); }
+      40%  { transform: translate(-50px, 60px) scale(1.07); }
+      80%  { transform: translate(40px, -30px) scale(0.94); }
       100% { transform: translate(0, 0) scale(1); }
     }
 
@@ -62,38 +105,23 @@
       font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #999;
+      color: #555;
       cursor: pointer;
       padding: 0;
       transition: color 0.2s;
     }
-    .lang-btn.active { color: #1a1a1a; }
-    .lang-btn:hover { color: #555; }
-    .lang-sep { color: #ccc; font-size: 0.75rem; line-height: 1; align-self: center; }
+    .lang-btn.active { color: #c8c8cc; }
+    .lang-btn:hover { color: #888; }
+    .lang-sep { color: #333; font-size: 0.75rem; line-height: 1; align-self: center; }
 
     /* ── Content ── */
-    h1 {
-      font-size: 1.15rem;
-      font-weight: normal;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #555;
-      margin-bottom: 36px;
-    }
-
-    p { margin-bottom: 1.4em; color: #2a2a2a; }
+    p { margin-bottom: 1.4em; color: #b0b0b8; }
     p:last-child { margin-bottom: 0; }
 
-    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-    a:hover { color: #555; }
+    a { color: #c8c8cc; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(200,200,204,0.3); }
+    a:hover { color: #fff; text-decoration-color: rgba(255,255,255,0.6); }
 
-    /* ── Small extra block ── */
-    .extra {
-      margin-top: 44px;
-      padding-top: 36px;
-      border-top: 1px solid #d8d2c8;
-    }
-    .extra p { font-size: 0.95rem; color: #555; }
+    em { font-style: italic; color: #c8c8cc; }
 
     /* ── i18n ── */
     [data-lang] { display: none; }
@@ -105,6 +133,7 @@
   <div class="orb"></div>
   <div class="orb"></div>
   <div class="orb"></div>
+  <div class="orb"></div>
 
   <main>
 
@@ -113,8 +142,6 @@
       <span class="lang-sep">/</span>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </nav>
-
-    <h1>Richard Kaufmann</h1>
 
     <!-- Consultancy -->
     <p data-lang="de">
@@ -180,8 +207,6 @@
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang;
     }
-    const userLang = (navigator.language || 'de').toLowerCase();
-    if (userLang.startsWith('en')) setLang('en');
   </script>
 </body>
 </html>
