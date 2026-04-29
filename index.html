@@ -9,7 +9,7 @@
 
     body {
       min-height: 100vh;
-      background: #07070f;
+      background: #030c16;
       color: #c8c8cc;
       font-family: 'Georgia', serif;
       font-size: 1.05rem;
@@ -18,75 +18,112 @@
       overflow-x: hidden;
     }
 
-    /* ── Animated background — deep drifting color fields ── */
+    /* ── Grain texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* ── Dot grid overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(100,180,255,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* ── Animated background — cool drifting color fields ── */
     .orb {
       position: fixed;
       border-radius: 50%;
       filter: blur(130px);
-      opacity: 0.28;
+      opacity: 0.3;
       z-index: 0;
       pointer-events: none;
       will-change: transform;
     }
 
+    /* cool blues, cyans, teals */
     .orb:nth-child(1) {
-      width: 750px; height: 750px;
-      background: #4c1d95;
-      top: -200px; left: -180px;
-      animation: drift1 42s ease-in-out infinite;
+      width: 780px; height: 780px;
+      background: #0369a1;
+      top: -220px; left: -180px;
+      animation: drift1 44s ease-in-out infinite;
     }
     .orb:nth-child(2) {
-      width: 650px; height: 650px;
-      background: #0c1f6e;
-      bottom: -150px; right: -150px;
+      width: 660px; height: 660px;
+      background: #1e3a8a;
+      bottom: -160px; right: -160px;
       animation: drift2 36s ease-in-out infinite;
       animation-delay: -12s;
     }
     .orb:nth-child(3) {
-      width: 550px; height: 550px;
-      background: #0f4457;
-      top: 40%; left: 30%;
-      animation: drift3 50s ease-in-out infinite;
-      animation-delay: -25s;
+      width: 520px; height: 520px;
+      background: #0f766e;
+      top: 38%; left: 28%;
+      animation: drift3 52s ease-in-out infinite;
+      animation-delay: -26s;
     }
     .orb:nth-child(4) {
       width: 420px; height: 420px;
-      background: #2d1b69;
-      top: 15%; right: 5%;
-      animation: drift4 30s ease-in-out infinite;
+      background: #0c4a6e;
+      top: 12%; right: 4%;
+      animation: drift4 31s ease-in-out infinite;
       animation-delay: -8s;
+    }
+    .orb:nth-child(5) {
+      width: 340px; height: 340px;
+      background: #164e63;
+      bottom: 10%; left: 8%;
+      animation: drift5 38s ease-in-out infinite;
+      animation-delay: -19s;
     }
 
     @keyframes drift1 {
       0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(60px, 80px) scale(1.06); }
-      66%  { transform: translate(-40px, 50px) scale(0.95); }
+      33%  { transform: translate(70px, 90px) scale(1.06); }
+      66%  { transform: translate(-40px, 55px) scale(0.95); }
       100% { transform: translate(0, 0) scale(1); }
     }
     @keyframes drift2 {
       0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(-70px, -50px) scale(1.04); }
-      66%  { transform: translate(30px, -80px) scale(0.97); }
+      33%  { transform: translate(-80px, -55px) scale(1.05); }
+      66%  { transform: translate(35px, -85px) scale(0.97); }
       100% { transform: translate(0, 0) scale(1); }
     }
     @keyframes drift3 {
       0%   { transform: translate(0, 0) scale(1); }
-      25%  { transform: translate(50px, -60px) scale(1.05); }
-      50%  { transform: translate(-30px, 40px) scale(0.96); }
-      75%  { transform: translate(60px, 30px) scale(1.03); }
+      25%  { transform: translate(55px, -65px) scale(1.05); }
+      50%  { transform: translate(-35px, 45px) scale(0.96); }
+      75%  { transform: translate(65px, 35px) scale(1.03); }
       100% { transform: translate(0, 0) scale(1); }
     }
     @keyframes drift4 {
       0%   { transform: translate(0, 0) scale(1); }
-      40%  { transform: translate(-50px, 60px) scale(1.07); }
-      80%  { transform: translate(40px, -30px) scale(0.94); }
+      40%  { transform: translate(-55px, 65px) scale(1.07); }
+      80%  { transform: translate(45px, -35px) scale(0.94); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes drift5 {
+      0%   { transform: translate(0, 0) scale(1); }
+      30%  { transform: translate(45px, -50px) scale(1.04); }
+      60%  { transform: translate(-60px, -20px) scale(0.97); }
       100% { transform: translate(0, 0) scale(1); }
     }
 
     /* ── Layout ── */
     main {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       max-width: 600px;
       margin: 0 auto;
       padding: 80px 28px 100px;
@@ -130,6 +167,7 @@
 </head>
 <body class="de">
 
+  <div class="orb"></div>
   <div class="orb"></div>
   <div class="orb"></div>
   <div class="orb"></div>
