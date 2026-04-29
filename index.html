@@ -207,6 +207,8 @@
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.documentElement.lang = lang;
     }
+    const userLang = (navigator.language || 'de').toLowerCase();
+    if (userLang.startsWith('en')) setLang('en');
   </script>
 </body>
 </html>
