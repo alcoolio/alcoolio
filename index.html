@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richard Kaufmann</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f5f2ec;
+      color: #1a1a1a;
+      font-family: 'Georgia', serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated background orbs ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.12;
+      animation: drift linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orb:nth-child(1) { width: 500px; height: 500px; background: #a8c4d4; top: -80px; left: -120px; animation-duration: 30s; }
+    .orb:nth-child(2) { width: 350px; height: 350px; background: #c4a882; bottom: 5%; right: -80px; animation-duration: 24s; animation-delay: -9s; }
+    .orb:nth-child(3) { width: 280px; height: 280px; background: #9ab8a0; top: 45%; left: 35%; animation-duration: 38s; animation-delay: -18s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(35px, -25px) scale(1.04); }
+      50%  { transform: translate(15px, 45px) scale(0.97); }
+      75%  { transform: translate(-25px, 18px) scale(1.02); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* ── Layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 80px 28px 100px;
+    }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 56px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .lang-btn.active { color: #1a1a1a; }
+    .lang-btn:hover { color: #555; }
+    .lang-sep { color: #ccc; font-size: 0.75rem; line-height: 1; align-self: center; }
+
+    /* ── Content ── */
+    h1 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 36px;
+    }
+
+    p { margin-bottom: 1.4em; color: #2a2a2a; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #555; }
+
+    /* ── Small extra block ── */
+    .extra {
+      margin-top: 44px;
+      padding-top: 36px;
+      border-top: 1px solid #d8d2c8;
+    }
+    .extra p { font-size: 0.95rem; color: #555; }
+
+    /* ── i18n ── */
+    [data-lang] { display: none; }
+    .de [data-lang="de"], .en [data-lang="en"] { display: revert; }
+  </style>
+</head>
+<body class="de">
+
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+
+  <main>
+
+    <nav class="lang-toggle" aria-label="Sprache / Language">
+      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </nav>
+
+    <h1>Richard Kaufmann</h1>
+
+    <!-- Main bio -->
+    <p data-lang="de">
+      Richard Kaufmann ist Autor und freier Journalist. Seine Themen sind Mobilität, Arbeit und Feminismus.
+      Er war Mitgründer des gedruckten <em>transform</em> Magazins in Berlin und arbeitete dort in der Chefredaktion bis 2019.
+      Anschließend erschien von ihm das Taschenbuch <em>Landreisen</em> (RAZ EL HANOUT).
+      Weitere Veröffentlichungen von Richard sind zu finden bei agora42, GEO Saison, der Freitag oder
+      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online).
+      Er hat einen BA in International Communication Management von der University of Applied Sciences in Holland in Amsterdam.
+      Heute lebt und arbeitet er in Leipzig.
+    </p>
+    <p data-lang="en">
+      Richard Kaufmann is an author and freelance journalist covering mobility, labour, and feminism.
+      He co-founded the print magazine <em>transform</em> in Berlin and served on its editorial board until 2019.
+      He subsequently published the paperback <em>Landreisen</em> (RAZ EL HANOUT).
+      Further publications by Richard can be found in agora42, GEO Saison, der Freitag, and
+      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online).
+      He holds a BA in International Communication Management from the University of Applied Sciences in Holland in Amsterdam.
+      He lives and works in Leipzig.
+    </p>
+
+    <p data-lang="de"><a id="contact-de">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
+    <p data-lang="en"><a id="contact-en">Get in touch.</a> Further work samples gladly available on request.</p>
+
+    <!-- Extra block: vibe coding + vidual -->
+    <div class="extra">
+      <p data-lang="de">
+        Daneben experimentiert Richard mit KI-gestütztem Programmieren — sogenanntem Vibe Coding — und entwickelt
+        Open-Source-Projekte mit gesellschaftlichem Anspruch. Die Arbeit ist auf
+        <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub</a> einsehbar.
+        Als Marketing-Automation-Berater ist er über <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org</a> erreichbar.
+      </p>
+      <p data-lang="en">
+        Richard also experiments with AI-assisted programming — so-called vibe coding — building open-source projects
+        with a social purpose. The work is available on
+        <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub</a>.
+        As a marketing automation consultant he can be reached via <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org</a>.
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    // Email assembled at runtime — never appears as plain text in source
+    (function() {
+      var u = 'mail', d = 'richard-kaufmann.de';
+      var href = 'mailto:' + u + '@' + d;
+      document.getElementById('contact-de').href = href;
+      document.getElementById('contact-en').href = href;
+    })();
+
+    function setLang(lang) {
+      document.body.className = lang;
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+    }
+    const userLang = (navigator.language || 'de').toLowerCase();
+    if (userLang.startsWith('en')) setLang('en');
+  </script>
+</body>
+</html>
