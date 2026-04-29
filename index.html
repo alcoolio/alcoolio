@@ -136,8 +136,8 @@
       He lives and works in Leipzig.
     </p>
 
-    <p data-lang="de"><a href="mailto:mail@richard-kaufmann.de">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
-    <p data-lang="en"><a href="mailto:mail@richard-kaufmann.de">Get in touch.</a> Further work samples gladly available on request.</p>
+    <p data-lang="de"><a id="contact-de">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
+    <p data-lang="en"><a id="contact-en">Get in touch.</a> Further work samples gladly available on request.</p>
 
     <!-- Extra block: vibe coding + vidual -->
     <div class="extra">
@@ -158,6 +158,14 @@
   </main>
 
   <script>
+    // Email assembled at runtime — never appears as plain text in source
+    (function() {
+      var u = 'mail', d = 'richard-kaufmann.de';
+      var href = 'mailto:' + u + '@' + d;
+      document.getElementById('contact-de').href = href;
+      document.getElementById('contact-en').href = href;
+    })();
+
     function setLang(lang) {
       document.body.className = lang;
       document.getElementById('btn-de').classList.toggle('active', lang === 'de');
