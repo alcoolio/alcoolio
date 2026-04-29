@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richard Kaufmann</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #c8a96e;
+      --link: #c8a96e;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    /* ── Animated background ── */
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      animation: drift linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orb:nth-child(1) { width: 520px; height: 520px; background: #3a6ea5; top: -120px; left: -100px; animation-duration: 28s; }
+    .orb:nth-child(2) { width: 380px; height: 380px; background: #c8a96e; top: 30%; right: -80px; animation-duration: 22s; animation-delay: -7s; }
+    .orb:nth-child(3) { width: 300px; height: 300px; background: #5a8f6a; bottom: -60px; left: 25%; animation-duration: 35s; animation-delay: -14s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(40px, -30px) scale(1.05); }
+      50%  { transform: translate(20px, 50px) scale(0.96); }
+      75%  { transform: translate(-30px, 20px) scale(1.03); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* ── Layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 72px 28px 96px;
+    }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 60px;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
+    /* ── Header ── */
+    header { margin-bottom: 52px; }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: normal;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .tagline {
+      color: var(--accent);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      font-style: italic;
+    }
+
+    /* ── Sections ── */
+    section { margin-bottom: 44px; }
+    h2 {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #d0d0d0;
+    }
+    p + p { margin-top: 12px; }
+
+    /* ── Links ── */
+    a {
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,169,110,0.35);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    a:hover { color: #e8c98e; border-color: #e8c98e; }
+
+    /* ── Cards ── */
+    .card-grid { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.14); }
+    .card strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .card span {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px 0 40px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── i18n ── */
+    [data-lang] { display: none; }
+    .en [data-lang="en"], .de [data-lang="de"] { display: revert; }
+  </style>
+</head>
+<body class="en">
+
+  <!-- animated orbs -->
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+
+  <main>
+
+    <nav class="lang-toggle" aria-label="Language">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('de')" id="btn-de">DE</button>
+    </nav>
+
+    <header>
+      <h1>Richard Kaufmann</h1>
+      <p class="tagline" data-lang="en">Tech &middot; Writing &middot; Vibe Coding for a Better Society</p>
+      <p class="tagline" data-lang="de">Tech &middot; Schreiben &middot; Vibe Coding für eine bessere Gesellschaft</p>
+    </header>
+
+    <!-- About -->
+    <section>
+      <h2 data-lang="en">About</h2>
+      <h2 data-lang="de">Über mich</h2>
+
+      <p data-lang="en">
+        My name is Richard and I have 20+ years of experience in tech — primarily communication and digital marketing.
+        I also worked as a writer for print and digital media, and gained experience in product management and requirements engineering.
+        For most of that time, coding itself stayed out of reach.
+      </p>
+      <p data-lang="de">
+        Mein Name ist Richard und ich blicke auf über 20 Jahre Erfahrung in der Tech-Branche zurück — vor allem in Kommunikation und digitalem Marketing.
+        Daneben war ich als Autor für Print- und Digitalmedien tätig und sammelte Erfahrung im Produktmanagement und Requirements Engineering.
+        Das Programmieren selbst blieb für mich lange unerreichbar.
+      </p>
+
+      <p data-lang="en">
+        That changed with the new generation of generative AI. Using local Qwen Coder models and Claude Code,
+        I now build the tech projects I always dreamed of but never had the expertise, time, or budget for.
+        I call this approach <em>vibe coding</em> — and I believe it has real potential to help build a better society.
+      </p>
+      <p data-lang="de">
+        Das änderte sich mit der neuen Generation generativer KI. Mit lokalen Qwen-Coder-Modellen und Claude Code
+        realisiere ich jetzt die Tech-Projekte, von denen ich immer geträumt habe, für die mir aber Wissen, Zeit und Budget fehlten.
+        Ich nenne diesen Ansatz <em>Vibe Coding</em> — und ich glaube, dass er echtes Potenzial hat, zu einer besseren Gesellschaft beizutragen.
+      </p>
+    </section>
+
+    <!-- Vibe Coding / GitHub -->
+    <section>
+      <h2 data-lang="en">Vibe Coding on GitHub</h2>
+      <h2 data-lang="de">Vibe Coding auf GitHub</h2>
+
+      <p data-lang="en">
+        I use AI-assisted coding to build open-source tools with social impact.
+        All projects are works in progress and contributors are very welcome.
+        You can follow the work on my <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub profile ↗</a>.
+      </p>
+      <p data-lang="de">
+        Mit KI-gestützter Programmierung entwickle ich Open-Source-Tools mit gesellschaftlichem Mehrwert.
+        Alle Projekte befinden sich in aktiver Entwicklung — Mitwirkende sind herzlich willkommen.
+        Die Arbeit ist auf meinem <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub-Profil ↗</a> einsehbar.
+      </p>
+
+      <div class="card-grid" style="margin-top:20px;">
+        <div class="card">
+          <strong>NeighbourGood</strong>
+          <span data-lang="en">A hyper-local social network for sharing goods between neighbours, with a crisis mode that turns it into a ticketing tool. Offline messaging via BLE (bitchat).</span>
+          <span data-lang="de">Ein hyperlokal ausgerichtetes soziales Netzwerk zum Teilen von Gegenständen unter Nachbarn, mit einem Krisenmodus als Ticket-Tool. Offline-Messaging via BLE (bitchat).</span>
+        </div>
+        <div class="card">
+          <strong>Open Global Income</strong>
+          <span data-lang="en">An API and simulation tool for implementing a basic income model.</span>
+          <span data-lang="de">Eine API und ein Simulationswerkzeug für die Implementierung eines Grundeinkommensmodells.</span>
+        </div>
+        <div class="card">
+          <strong>DeepFake Guardian</strong>
+          <span data-lang="en">A chatbot detecting violence, sexual violence, and bullying, with deepfake detection powered by a privacy-friendly local LLM.</span>
+          <span data-lang="de">Ein Chatbot zur Erkennung von Gewalt, sexueller Gewalt und Mobbing, mit Deepfake-Erkennung durch ein datenschutzfreundliches lokales LLM.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultancy -->
+    <section>
+      <h2 data-lang="en">Marketing Automation Consultancy</h2>
+      <h2 data-lang="de">Marketing-Automation-Beratung</h2>
+
+      <p data-lang="en">
+        Looking for help with marketing automation? I consult through
+        <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org ↗</a> —
+        helping organisations design smarter, more efficient marketing workflows.
+      </p>
+      <p data-lang="de">
+        Sie suchen Unterstützung bei Marketing-Automation? Ich berate über
+        <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org ↗</a> —
+        und helfe Organisationen dabei, schlankere und effektivere Marketing-Workflows zu entwickeln.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; <span id="yr"></span> Richard Kaufmann
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    function setLang(lang) {
+      document.body.className = lang;
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    }
+
+    // detect browser language
+    const userLang = (navigator.language || 'en').toLowerCase();
+    if (userLang.startsWith('de')) setLang('de');
+  </script>
+</body>
+</html>
