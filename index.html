@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,52 +7,36 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #0d0d0d;
-      --text: #e8e8e8;
-      --muted: #888;
-      --accent: #c8a96e;
-      --link: #c8a96e;
-      --card: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
-    }
-
-    /* ── Animated background ── */
     body {
       min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
+      background: #f5f2ec;
+      color: #1a1a1a;
       font-family: 'Georgia', serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
       position: relative;
       overflow-x: hidden;
     }
 
-    #bg-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* floating orbs */
+    /* ── Animated background orbs ── */
     .orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.18;
+      filter: blur(90px);
+      opacity: 0.12;
       animation: drift linear infinite;
       z-index: 0;
       pointer-events: none;
     }
-    .orb:nth-child(1) { width: 520px; height: 520px; background: #3a6ea5; top: -120px; left: -100px; animation-duration: 28s; }
-    .orb:nth-child(2) { width: 380px; height: 380px; background: #c8a96e; top: 30%; right: -80px; animation-duration: 22s; animation-delay: -7s; }
-    .orb:nth-child(3) { width: 300px; height: 300px; background: #5a8f6a; bottom: -60px; left: 25%; animation-duration: 35s; animation-delay: -14s; }
+    .orb:nth-child(1) { width: 500px; height: 500px; background: #a8c4d4; top: -80px; left: -120px; animation-duration: 30s; }
+    .orb:nth-child(2) { width: 350px; height: 350px; background: #c4a882; bottom: 5%; right: -80px; animation-duration: 24s; animation-delay: -9s; }
+    .orb:nth-child(3) { width: 280px; height: 280px; background: #9ab8a0; top: 45%; left: 35%; animation-duration: 38s; animation-delay: -18s; }
 
     @keyframes drift {
       0%   { transform: translate(0, 0) scale(1); }
-      25%  { transform: translate(40px, -30px) scale(1.05); }
-      50%  { transform: translate(20px, 50px) scale(0.96); }
-      75%  { transform: translate(-30px, 20px) scale(1.03); }
+      25%  { transform: translate(35px, -25px) scale(1.04); }
+      50%  { transform: translate(15px, 45px) scale(0.97); }
+      75%  { transform: translate(-25px, 18px) scale(1.02); }
       100% { transform: translate(0, 0) scale(1); }
     }
 
@@ -60,232 +44,128 @@
     main {
       position: relative;
       z-index: 1;
-      max-width: 680px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 72px 28px 96px;
+      padding: 80px 28px 100px;
     }
 
     /* ── Language toggle ── */
     .lang-toggle {
       display: flex;
-      gap: 4px;
-      margin-bottom: 60px;
+      gap: 6px;
+      margin-bottom: 56px;
     }
     .lang-btn {
       background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
+      border: none;
+      font-family: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 4px 10px;
+      color: #999;
       cursor: pointer;
-      border-radius: 3px;
-      transition: color 0.2s, border-color 0.2s;
+      padding: 0;
+      transition: color 0.2s;
     }
-    .lang-btn.active {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+    .lang-btn.active { color: #1a1a1a; }
+    .lang-btn:hover { color: #555; }
+    .lang-sep { color: #ccc; font-size: 0.75rem; line-height: 1; align-self: center; }
 
-    /* ── Header ── */
-    header { margin-bottom: 52px; }
+    /* ── Content ── */
     h1 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-size: 1.15rem;
       font-weight: normal;
-      letter-spacing: 0.01em;
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
-    .tagline {
-      color: var(--accent);
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      font-style: italic;
-    }
-
-    /* ── Sections ── */
-    section { margin-bottom: 44px; }
-    h2 {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-    p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #d0d0d0;
-    }
-    p + p { margin-top: 12px; }
-
-    /* ── Links ── */
-    a {
-      color: var(--link);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(200,169,110,0.35);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    a:hover { color: #e8c98e; border-color: #e8c98e; }
-
-    /* ── Cards ── */
-    .card-grid { display: flex; flex-direction: column; gap: 12px; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 18px 20px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.14); }
-    .card strong {
-      display: block;
-      color: var(--text);
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-    .card span {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ── Footer ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 28px 0 40px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.2);
       letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 36px;
     }
+
+    p { margin-bottom: 1.4em; color: #2a2a2a; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #555; }
+
+    /* ── Small extra block ── */
+    .extra {
+      margin-top: 44px;
+      padding-top: 36px;
+      border-top: 1px solid #d8d2c8;
+    }
+    .extra p { font-size: 0.95rem; color: #555; }
 
     /* ── i18n ── */
     [data-lang] { display: none; }
-    .en [data-lang="en"], .de [data-lang="de"] { display: revert; }
+    .de [data-lang="de"], .en [data-lang="en"] { display: revert; }
   </style>
 </head>
-<body class="en">
+<body class="de">
 
-  <!-- animated orbs -->
   <div class="orb"></div>
   <div class="orb"></div>
   <div class="orb"></div>
 
   <main>
 
-    <nav class="lang-toggle" aria-label="Language">
-      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
-      <button class="lang-btn" onclick="setLang('de')" id="btn-de">DE</button>
+    <nav class="lang-toggle" aria-label="Sprache / Language">
+      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </nav>
 
-    <header>
-      <h1>Richard Kaufmann</h1>
-      <p class="tagline" data-lang="en">Tech &middot; Writing &middot; Vibe Coding for a Better Society</p>
-      <p class="tagline" data-lang="de">Tech &middot; Schreiben &middot; Vibe Coding für eine bessere Gesellschaft</p>
-    </header>
+    <h1>Richard Kaufmann</h1>
 
-    <!-- About -->
-    <section>
-      <h2 data-lang="en">About</h2>
-      <h2 data-lang="de">Über mich</h2>
+    <!-- Main bio -->
+    <p data-lang="de">
+      Richard Kaufmann ist Autor und freier Journalist. Seine Themen sind Mobilität, Arbeit und Feminismus.
+      Er war Mitgründer des gedruckten <em>transform</em> Magazins in Berlin und arbeitete dort in der Chefredaktion bis 2019.
+      Anschließend erschien von ihm das Taschenbuch <em>Landreisen</em> (RAZ EL HANOUT).
+      Weitere Veröffentlichungen von Richard sind zu finden bei agora42, GEO Saison, der Freitag oder
+      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online).
+      Er hat einen BA in International Communication Management von der University of Applied Sciences in Holland in Amsterdam.
+      Heute lebt und arbeitet er in Leipzig.
+    </p>
+    <p data-lang="en">
+      Richard Kaufmann is an author and freelance journalist covering mobility, labour, and feminism.
+      He co-founded the print magazine <em>transform</em> in Berlin and served on its editorial board until 2019.
+      He subsequently published the paperback <em>Landreisen</em> (RAZ EL HANOUT).
+      Further publications by Richard can be found in agora42, GEO Saison, der Freitag, and
+      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online).
+      He holds a BA in International Communication Management from the University of Applied Sciences in Holland in Amsterdam.
+      He lives and works in Leipzig.
+    </p>
 
-      <p data-lang="en">
-        My name is Richard and I have 20+ years of experience in tech — primarily communication and digital marketing.
-        I also worked as a writer for print and digital media, and gained experience in product management and requirements engineering.
-        For most of that time, coding itself stayed out of reach.
-      </p>
+    <p data-lang="de"><a href="mailto:mail@richard-kaufmann.de">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
+    <p data-lang="en"><a href="mailto:mail@richard-kaufmann.de">Get in touch.</a> Further work samples gladly available on request.</p>
+
+    <!-- Extra block: vibe coding + vidual -->
+    <div class="extra">
       <p data-lang="de">
-        Mein Name ist Richard und ich blicke auf über 20 Jahre Erfahrung in der Tech-Branche zurück — vor allem in Kommunikation und digitalem Marketing.
-        Daneben war ich als Autor für Print- und Digitalmedien tätig und sammelte Erfahrung im Produktmanagement und Requirements Engineering.
-        Das Programmieren selbst blieb für mich lange unerreichbar.
+        Daneben experimentiert Richard mit KI-gestütztem Programmieren — sogenanntem Vibe Coding — und entwickelt
+        Open-Source-Projekte mit gesellschaftlichem Anspruch. Die Arbeit ist auf
+        <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub</a> einsehbar.
+        Als Marketing-Automation-Berater ist er über <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org</a> erreichbar.
       </p>
-
       <p data-lang="en">
-        That changed with the new generation of generative AI. Using local Qwen Coder models and Claude Code,
-        I now build the tech projects I always dreamed of but never had the expertise, time, or budget for.
-        I call this approach <em>vibe coding</em> — and I believe it has real potential to help build a better society.
+        Richard also experiments with AI-assisted programming — so-called vibe coding — building open-source projects
+        with a social purpose. The work is available on
+        <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub</a>.
+        As a marketing automation consultant he can be reached via <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org</a>.
       </p>
-      <p data-lang="de">
-        Das änderte sich mit der neuen Generation generativer KI. Mit lokalen Qwen-Coder-Modellen und Claude Code
-        realisiere ich jetzt die Tech-Projekte, von denen ich immer geträumt habe, für die mir aber Wissen, Zeit und Budget fehlten.
-        Ich nenne diesen Ansatz <em>Vibe Coding</em> — und ich glaube, dass er echtes Potenzial hat, zu einer besseren Gesellschaft beizutragen.
-      </p>
-    </section>
-
-    <!-- Vibe Coding / GitHub -->
-    <section>
-      <h2 data-lang="en">Vibe Coding on GitHub</h2>
-      <h2 data-lang="de">Vibe Coding auf GitHub</h2>
-
-      <p data-lang="en">
-        I use AI-assisted coding to build open-source tools with social impact.
-        All projects are works in progress and contributors are very welcome.
-        You can follow the work on my <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub profile ↗</a>.
-      </p>
-      <p data-lang="de">
-        Mit KI-gestützter Programmierung entwickle ich Open-Source-Tools mit gesellschaftlichem Mehrwert.
-        Alle Projekte befinden sich in aktiver Entwicklung — Mitwirkende sind herzlich willkommen.
-        Die Arbeit ist auf meinem <a href="https://github.com/richardkfm" target="_blank" rel="noopener">GitHub-Profil ↗</a> einsehbar.
-      </p>
-
-      <div class="card-grid" style="margin-top:20px;">
-        <div class="card">
-          <strong>NeighbourGood</strong>
-          <span data-lang="en">A hyper-local social network for sharing goods between neighbours, with a crisis mode that turns it into a ticketing tool. Offline messaging via BLE (bitchat).</span>
-          <span data-lang="de">Ein hyperlokal ausgerichtetes soziales Netzwerk zum Teilen von Gegenständen unter Nachbarn, mit einem Krisenmodus als Ticket-Tool. Offline-Messaging via BLE (bitchat).</span>
-        </div>
-        <div class="card">
-          <strong>Open Global Income</strong>
-          <span data-lang="en">An API and simulation tool for implementing a basic income model.</span>
-          <span data-lang="de">Eine API und ein Simulationswerkzeug für die Implementierung eines Grundeinkommensmodells.</span>
-        </div>
-        <div class="card">
-          <strong>DeepFake Guardian</strong>
-          <span data-lang="en">A chatbot detecting violence, sexual violence, and bullying, with deepfake detection powered by a privacy-friendly local LLM.</span>
-          <span data-lang="de">Ein Chatbot zur Erkennung von Gewalt, sexueller Gewalt und Mobbing, mit Deepfake-Erkennung durch ein datenschutzfreundliches lokales LLM.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Consultancy -->
-    <section>
-      <h2 data-lang="en">Marketing Automation Consultancy</h2>
-      <h2 data-lang="de">Marketing-Automation-Beratung</h2>
-
-      <p data-lang="en">
-        Looking for help with marketing automation? I consult through
-        <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org ↗</a> —
-        helping organisations design smarter, more efficient marketing workflows.
-      </p>
-      <p data-lang="de">
-        Sie suchen Unterstützung bei Marketing-Automation? Ich berate über
-        <a href="https://vidual.org" target="_blank" rel="noopener">vidual.org ↗</a> —
-        und helfe Organisationen dabei, schlankere und effektivere Marketing-Workflows zu entwickeln.
-      </p>
-    </section>
+    </div>
 
   </main>
 
-  <footer>
-    &copy; <span id="yr"></span> Richard Kaufmann
-  </footer>
-
   <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
     function setLang(lang) {
       document.body.className = lang;
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
     }
-
-    // detect browser language
-    const userLang = (navigator.language || 'en').toLowerCase();
-    if (userLang.startsWith('de')) setLang('de');
+    const userLang = (navigator.language || 'de').toLowerCase();
+    if (userLang.startsWith('en')) setLang('en');
   </script>
 </body>
 </html>
