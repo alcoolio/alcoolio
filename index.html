@@ -157,7 +157,16 @@
     }
     a:hover { color: #fff; border-color: #fff; }
 
+    /* italic on all external links; mailto stays upright */
+    a[target="_blank"] { font-style: italic; }
+
     em { font-style: italic; color: #c8c8cc; }
+
+    /* ── Mobile: hide 2 orbs to reduce GPU load ── */
+    @media (max-width: 768px) {
+      .orb:nth-child(3),
+      .orb:nth-child(5) { display: none; }
+    }
 
     /* ── i18n ── */
     [data-lang] { display: none; }
