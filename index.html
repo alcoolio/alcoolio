@@ -233,18 +233,24 @@
       and lives in Leipzig.
     </p>
 
-    <p data-lang="de"><a id="contact-de">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
-    <p data-lang="en"><a id="contact-en">Get in touch.</a> Further work samples gladly available on request.</p>
+    <p data-lang="de"><a id="contact-de" role="link" tabindex="0" aria-label="E-Mail-Kontakt">Nimm hier Kontakt auf.</a> Weitere Arbeitsproben sehr gern auf Anfrage.</p>
+    <p data-lang="en"><a id="contact-en" role="link" tabindex="0" aria-label="Contact by email">Get in touch.</a> Further work samples gladly available on request.</p>
 
   </main>
 
   <script>
-    // Email assembled at runtime — never appears as plain text in source
     (function() {
-      var u = 'mail', d = 'richard-kaufmann.de';
-      var href = 'mailto:' + u + '@' + d;
-      document.getElementById('contact-de').href = href;
-      document.getElementById('contact-en').href = href;
+      var e = 'bWFpbEByaWNoYXJkLWthdWZtYW5uLmRl';
+      ['contact-de', 'contact-en'].forEach(function(id) {
+        var a = document.getElementById(id);
+        function reveal() { a.href = 'mailto:' + atob(e); }
+        a.addEventListener('mouseover', reveal);
+        a.addEventListener('focus',     reveal);
+        a.addEventListener('click',     reveal);
+        a.addEventListener('keydown', function(ev) {
+          if (ev.key === ' ') { ev.preventDefault(); reveal(); window.location.href = a.href; }
+        });
+      });
     })();
 
     function setLang(lang) {
