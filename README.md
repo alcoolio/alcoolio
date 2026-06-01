@@ -8,6 +8,8 @@ These projects include:
 
 NeighbourGood - a hyper local social network for sharing goods between neighbours. It comes with a crisis mode which turns it into a ticketing tool. Killer feature: offline messaging through BLE (/w bitchat)
 
+OMOS - a tool for city planers, journalists and activists to unveil gaps in safe and shared traffic design.
+
 Open Global Income - an API and simuulation tool for implementing a basic income.
 
 DeepFake Guardian - a chatbot that detects violence, sexual violence, bullying. with deepfake detection powered by privacy friendly local LLM.
