@@ -12,7 +12,9 @@ OMOS - a tool for city planers, journalists and activists to unveil gaps in safe
 
 Open Global Income - an API and simuulation tool for implementing a basic income.
 
-DeepFake Guardian - a chatbot that detects violence, sexual violence, bullying. with deepfake detection powered by privacy friendly local LLM.
+Moral Core - a set of skills to train AI, agents and robots to be ethical.
+
+LOS bootstrap - CLI that helps to install lineage OS or other alternative ROM on android devices with the help to create a google free setup of apps afterwards.
 
 All those projects are work in progress. Contributors are welcome.
 
