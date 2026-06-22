@@ -1,24 +1,72 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
   <title>Richard Kaufmann</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <!-- Set theme before first paint: stored preference, else system setting -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <!-- Adobe Fonts: replace with your Typekit kit URL to load nimbus-sans -->
   <!-- <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Theme tokens ── */
+    :root,
+    [data-theme="dark"] {
+      --bg: #060606;
+      --text: #c8c8cc;
+      --text-soft: #b0b0b8;
+      --em: #c8c8cc;
+      --link: #f5e000;
+      --link-hover: #ffffff;
+      --ext-link: #999999;
+      --muted: #555555;
+      --muted-hover: #888888;
+      --sep: #333333;
+      --orb-opacity: 0.32;
+      --switch-track: #1a1a1a;
+      --switch-border: #333333;
+      --switch-thumb: #c8c8cc;
+    }
+    [data-theme="light"] {
+      --bg: #f3f3f6;
+      --text: #26262c;
+      --text-soft: #44444c;
+      --em: #26262c;
+      --link: #1d4ed8;
+      --link-hover: #000000;
+      --ext-link: #6a6a72;
+      --muted: #9a9aa2;
+      --muted-hover: #5a5a62;
+      --sep: #cfcfd6;
+      --orb-opacity: 0.20;
+      --switch-track: #dcdce2;
+      --switch-border: #c4c4cc;
+      --switch-thumb: #444450;
+    }
+
     body {
       min-height: 100vh;
-      background: #060606;
-      color: #c8c8cc;
+      background: var(--bg);
+      color: var(--text);
       font-family: "nimbus-sans", sans-serif;
       font-weight: 400;
       font-size: 1.15rem;
       line-height: 1.8;
       position: relative;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* ── Animated background — cool drifting color fields with internal texture ── */
@@ -26,7 +74,7 @@
       position: fixed;
       border-radius: 50%;
       filter: blur(110px);
-      opacity: 0.32;
+      opacity: var(--orb-opacity);
       z-index: 0;
       pointer-events: none;
       will-change: transform;
@@ -122,12 +170,17 @@
       padding: 80px 28px 100px;
     }
 
-    /* ── Language toggle ── */
-    .lang-toggle {
+    /* ── Top bar: language + theme controls ── */
+    .topbar {
       display: flex;
-      gap: 6px;
-      margin-bottom: 56px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
     }
+
+    /* ── Language toggle ── */
+    .lang-toggle { display: flex; gap: 6px; }
     .lang-btn {
       background: none;
       border: none;
@@ -135,37 +188,88 @@
       font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #555;
+      color: var(--muted);
       cursor: pointer;
       padding: 0;
       transition: color 0.2s;
     }
-    .lang-btn.active { color: #c8c8cc; }
-    .lang-btn:hover { color: #888; }
-    .lang-sep { color: #333; font-size: 0.75rem; line-height: 1; align-self: center; }
+    .lang-btn.active { color: var(--text); }
+    .lang-btn:hover { color: var(--muted-hover); }
+    .lang-sep { color: var(--sep); font-size: 0.75rem; line-height: 1; align-self: center; }
+
+    /* ── Dark-mode pill switch ── */
+    .theme-switch {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+    }
+    .theme-switch .track {
+      position: relative;
+      width: 46px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--switch-track);
+      border: 1px solid var(--switch-border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .theme-switch .thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--switch-thumb);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    [data-theme="light"] .theme-switch .thumb { transform: translateX(22px); }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 44px;
+    }
 
     /* ── Content ── */
-    p { margin-bottom: 1.4em; color: #b0b0b8; }
+    p { margin-bottom: 1.4em; color: var(--text-soft); }
     p:last-child { margin-bottom: 0; }
 
     a {
-      color: yellow;
+      color: var(--link);
       text-decoration: none;
       display: inline-block;
-      border-bottom: 1.5px solid yellow;
+      border-bottom: 1.5px solid var(--link);
       transition: color 400ms ease-in-out, border-color 400ms linear;
     }
-    a:hover { color: #fff; border-color: #fff; }
+    a:hover { color: var(--link-hover); border-color: var(--link-hover); }
 
-    /* external links: grey and italic; mailto stays yellow and upright */
-    a[target="_blank"] { font-style: italic; color: #999; border-bottom-color: #999; }
+    /* external links: grey and italic; mailto stays accent and upright */
+    a[target="_blank"] { font-style: italic; color: var(--ext-link); border-bottom-color: var(--ext-link); }
 
-    em { font-style: italic; color: #c8c8cc; }
+    em { font-style: italic; color: var(--em); }
 
     /* ── Mobile: hide 2 orbs to reduce GPU load ── */
     @media (max-width: 768px) {
       .orb:nth-child(3),
       .orb:nth-child(5) { display: none; }
+
+      /* No animations or transitions on mobile — keeps even high-end phones smooth */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .orb { animation: none !important; }
     }
 
     /* ── i18n ── */
@@ -183,11 +287,20 @@
 
   <main>
 
-    <nav class="lang-toggle" aria-label="Sprache / Language">
-      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
-      <span class="lang-sep">/</span>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-    </nav>
+    <header class="topbar">
+      <nav class="lang-toggle" aria-label="Sprache / Language">
+        <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </nav>
+
+      <button class="theme-switch" id="theme-switch" type="button" role="switch"
+              aria-checked="true" aria-label="Dark Mode">
+        <span class="track"><span class="thumb"></span></span>
+      </button>
+    </header>
+
+    <h1>Richard Kaufmann</h1>
 
     <!-- Consultancy -->
     <p data-lang="de">
@@ -219,7 +332,7 @@
       Er war Mitgründer des gedruckten <a href="https://transform-magazin.de/" target="_blank" rel="noopener"><em>transform</em></a> Magazins in Berlin und arbeitete dort in der Chefredaktion bis 2019.
       Anschließend erschien sein Taschenbuch <a href="https://razelhanout.de/" target="_blank" rel="noopener"><em>Landreisen</em></a> (RAZ EL HANOUT).
       Weitere Veröffentlichungen von ihm sind bei agora42, GEO Saison, der Freitag und
-      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online) erschienen.
+      ze.tt (ZEIT Online) erschienen.
       Er hat einen BA in International Communication Management von der University of Applied Sciences in Holland in Amsterdam
       und lebt in Leipzig.
     </p>
@@ -228,7 +341,7 @@
       He co-founded the print magazine <a href="https://transform-magazin.de/" target="_blank" rel="noopener"><em>transform</em></a> in Berlin and served on its editorial board until 2019,
       then published the paperback <a href="https://razelhanout.de/" target="_blank" rel="noopener"><em>Landreisen</em></a> (RAZ EL HANOUT).
       Further texts have appeared in agora42, GEO Saison, der Freitag, and
-      <a href="https://ze.tt" target="_blank" rel="noopener">ze.tt</a> (ZEIT Online).
+      ze.tt (ZEIT Online).
       He holds a BA in International Communication Management from the University of Applied Sciences in Holland in Amsterdam
       and lives in Leipzig.
     </p>
@@ -261,6 +374,22 @@
     }
     const userLang = (navigator.language || 'de').toLowerCase();
     if (userLang.startsWith('en')) setLang('en');
+
+    // ── Dark-mode pill switch ──
+    (function() {
+      var sw = document.getElementById('theme-switch');
+      function sync() {
+        var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        sw.setAttribute('aria-checked', isDark ? 'true' : 'false');
+      }
+      sync();
+      sw.addEventListener('click', function() {
+        var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        sync();
+      });
+    })();
   </script>
 </body>
 </html>
