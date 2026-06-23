@@ -6,15 +6,15 @@ That changed with the next level generative AI. I am now using local Qwen Coder 
 
 These projects include:
 
-NeighbourGood - a hyper local social network for sharing goods between neighbours. It comes with a crisis mode which turns it into a ticketing tool. Killer feature: offline messaging through BLE (/w bitchat)
+<a href="https://github.com/richardkfm/neighbourgood">NeighbourGood</a> - a hyper local social network for sharing goods between neighbours. It comes with a crisis mode which turns it into a ticketing tool. Killer feature: offline messaging through BLE (/w bitchat)
 
-OMOS - a tool for city planers, journalists and activists to unveil gaps in safe and shared traffic design.
+<a href="https://github.com/richardkfm/openmobility-os">OMOS</a> - a tool for city planers, journalists and activists to unveil gaps in safe and shared traffic design.
 
-Open Global Income - an API and simuulation tool for implementing a basic income.
+<a href="https://github.com/richardkfm/open-global-income">Open Global Income</a> - an API and simuulation tool for implementing a basic income.
 
-Moral Core - a set of skills to train AI, agents and robots to be ethical.
+<a href="https://github.com/richardkfm/moral-core">Moral Core</a> - a set of skills to train AI, agents and robots to be ethical.
 
-LOS bootstrap - CLI that helps to install lineage OS or other alternative ROM on android devices with the help to create a google free setup of apps afterwards.
+<a href="https://github.com/richardkfm/los-bootstrap">LOS bootstrap</a> - CLI that helps to install lineage OS or other alternative ROM on android devices with the help to create a google free setup of apps afterwards.
 
 All those projects are work in progress. Contributors are welcome.
 
