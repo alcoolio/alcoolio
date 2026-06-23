@@ -10,6 +10,10 @@ These projects include:
 
 <a href="https://github.com/richardkfm/openmobility-os">OMOS</a> - a tool for city planers, journalists and activists to unveil gaps in safe and shared traffic design.
 
+<a href="https://github.com/richardkfm/alpha">alpha</a> - computing the true economic value of natural ecosystems and their underlying services. 
+
+<a href="https://github.com/richardkfm/l-entre-deux">l'entre deux</a> - an android apps for the time between you open another app.
+
 <a href="https://github.com/richardkfm/open-global-income">Open Global Income</a> - an API and simuulation tool for implementing a basic income.
 
 <a href="https://github.com/richardkfm/moral-core">Moral Core</a> - a set of skills to train AI, agents and robots to be ethical.
