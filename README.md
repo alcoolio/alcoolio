@@ -18,7 +18,7 @@ These projects include:
 
 <a href="https://github.com/richardkfm/moral-core">Moral Core</a> - a set of skills to train AI, agents and robots to be ethical.
 
-<a href="https://github.com/richardkfm/horizon">Horizon</a> - an offline node full of guides about basic human living like cooking with a solar oven.
+<a href="https://github.com/richardkfm/horizon">horizon</a> - an offline node full of guides about basic human living like cooking with a solar oven.
 
 <a href="https://github.com/richardkfm/deepfake-guardian">Deepfake Guardian</a> - a framework for detecting and flagging deepfakes, comes with a chatbot for group moderation.
 
