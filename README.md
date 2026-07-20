@@ -6,33 +6,22 @@ That changed with the next level generative AI. I am now using local Qwen Coder 
 
 These projects include:
 
-<a href="https://github.com/richardkfm/neighbourgood">NeighbourGood</a> - a hyper local social network for sharing goods between neighbours. It comes with a crisis mode which turns it into a ticketing tool. Killer feature: offline messaging through BLE (/w bitchat)
+<a href="https://github.com/richardkfm/neighbourgood">NeighbourGood</a> - a hyper local social network for sharing goods between neighbours. It comes with a crisis mode which turns it into a ticketing tool. plus: offline messaging through BLE (/w bitchat)
 
 <a href="https://github.com/richardkfm/openmobility-os">OMOS</a> - a tool for city planers, journalists and activists to unveil gaps in safe and shared traffic design.
 
 <a href="https://github.com/richardkfm/alpha">alpha</a> - computing the true economic value of natural ecosystems and their underlying services. 
 
-<a href="https://github.com/richardkfm/l-entre-deux">l'entre deux</a> - an android apps for the time between you open another app.
+<a href="https://github.com/richardkfm/l-entre-deux">l'entre deux</a> - an android app for the time between you open another app.
 
-<a href="https://github.com/richardkfm/open-global-income">Open Global Income</a> - an API and simuulation tool for implementing a basic income.
+<a href="https://github.com/richardkfm/open-global-income">Open Global Income</a> - an API and simulation tool for implementing a basic income.
 
 <a href="https://github.com/richardkfm/moral-core">Moral Core</a> - a set of skills to train AI, agents and robots to be ethical.
+
+<a href="https://github.com/richardkfm/horizon">Horizon</a> - an offline node full of guides about basic human living like cooking with a solar oven.
+
+<a href="https://github.com/richardkfm/deepfake-guardian">Deepfake Guardian</a> - a framework for detecting and flagging deepfakes, comes with a chatbot for group moderation.
 
 <a href="https://github.com/richardkfm/los-bootstrap">LOS bootstrap</a> - CLI that helps to install lineage OS or other alternative ROM on android devices with the help to create a google free setup of apps afterwards.
 
 All those projects are work in progress. Contributors are welcome.
-
-<!--
-**alcoolio/alcoolio** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
